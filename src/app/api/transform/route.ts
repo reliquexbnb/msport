@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { generateObject } from "ai";
 import { z } from "zod";
-import { hasModel, resolveModel } from "@/lib/ai";
+import { hasModel, resolveModel, samplingOptions } from "@/lib/ai";
 import { AnatomySchema, CREATOR_SCHEMAS, type CreatorOutput } from "@/lib/schema";
 import { CREATOR_SYSTEM_PROMPT, creatorUserPrompt } from "@/lib/prompts";
 import { CREATOR_FORMATS } from "@/lib/config";
@@ -44,7 +44,7 @@ export async function POST(req: Request) {
         anatomy: body.anatomy,
         source: { kind: "paste" },
       }),
-      temperature: 0.5,
+      ...samplingOptions(0.5),
       maxRetries: 2,
     });
 

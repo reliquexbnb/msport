@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { generateObject } from "ai";
 import { z } from "zod";
-import { hasModel, resolveModel } from "@/lib/ai";
+import { hasModel, resolveModel, samplingOptions } from "@/lib/ai";
 import { AnatomySchema, type AnalysisResult, type SourceInfo } from "@/lib/schema";
 import { ANATOMY_SYSTEM_PROMPT, anatomyUserPrompt } from "@/lib/prompts";
 import { extractFromUrl } from "@/lib/extract";
@@ -64,7 +64,7 @@ export async function POST(req: Request) {
       schema: AnatomySchema,
       system: ANATOMY_SYSTEM_PROMPT,
       prompt: anatomyUserPrompt({ mode, input: material, source }),
-      temperature: 0.4,
+      ...samplingOptions(0.4),
       maxRetries: 2,
     });
 

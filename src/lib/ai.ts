@@ -36,3 +36,12 @@ export function resolveModel(): LanguageModel {
   }
   throw new Error("No model provider configured.");
 }
+
+/**
+ * Sampling controls that the active provider actually honours.
+ * OpenAI's reasoning models reject `temperature`, so it is only sent to
+ * Anthropic.
+ */
+export function samplingOptions(temperature: number): { temperature?: number } {
+  return activeProvider() === "anthropic" ? { temperature } : {};
+}

@@ -2,8 +2,6 @@ import "server-only";
 
 import dns from "node:dns/promises";
 import net from "node:net";
-import { JSDOM } from "jsdom";
-import { Readability } from "@mozilla/readability";
 import { LIMITS } from "./config";
 import type { SourceInfo } from "./schema";
 
@@ -187,6 +185,13 @@ export async function extractFromUrl(raw: string): Promise<ExtractResult> {
   }
 
   try {
+    // Loaded on demand so submitting pasted text or a question never pays the
+    // cost of instantiating jsdom.
+    const [{ JSDOM }, { Readability }] = await Promise.all([
+      import("jsdom"),
+      import("@mozilla/readability"),
+    ]);
+
     const dom = new JSDOM(html, { url: url.toString() });
     const doc = dom.window.document;
 
