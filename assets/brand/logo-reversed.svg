@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="mSport">
+  <g transform="translate(-106.9 -121.3) scale(2.1)"
+     fill="none" stroke="#F4F0E8" stroke-width="17" stroke-linecap="round" stroke-linejoin="round">
+    <!-- left form: an arch whose right leg stops short, opening the notch -->
+    <path d="M 66.6 132.4 V 78.4 A 10.2 10.2 0 0 1 87 78.4 V 107.6" />
+    <!-- right form: bottom bar sweeping up, over the top, down the right leg -->
+    <path d="M 88.6 132.4 H 99.8 A 10.2 10.2 0 0 0 110 122.2 V 77.6 A 10.2 10.2 0 0 1 130.4 77.6 V 132.4" />
+  </g>
+</svg>
