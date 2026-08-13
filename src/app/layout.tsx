@@ -40,6 +40,10 @@ export const metadata: Metadata = {
     title: `${BRAND.name} — ${BRAND.tagline}`,
     description: "Sports, understood deeper.",
   },
+  other: {
+    // Orynth site-ownership verification.
+    "ory-verify": "orynth-aeb63c1c82854fefa246b9c632e50dc7",
+  },
 };
 
 export const viewport: Viewport = {
