@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AnatomyPathPreview } from "@/components/AnatomyPath";
+import { AnatomyChips } from "@/components/AnatomySignature";
 import { Reveal } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -50,7 +50,7 @@ export default function MethodPage() {
         <h1 className="text-[clamp(2rem,5vw,3.1rem)] font-normal leading-[1.08] tracking-[-0.028em] text-ink">
           Stories have structure.
         </h1>
-        <p className="mt-6 max-w-[54ch] text-[17px] leading-[1.72] text-ink-soft">
+        <p className="mt-6 max-w-[54ch] text-[17.5px] leading-[1.72] text-ink-soft">
           Sports media moves quickly. mSport is designed to slow information down just enough to
           understand what actually matters — and to keep the difference between reporting and
           inference visible while you work.
@@ -62,8 +62,8 @@ export default function MethodPage() {
               <div className="grid gap-x-8 gap-y-2 border-b border-line py-8 sm:grid-cols-[80px_1fr]">
                 <p className="font-mono text-[12px] tabular-nums text-orange">{s.n}</p>
                 <div>
-                  <h2 className="text-[19px] font-normal text-ink">{s.title}</h2>
-                  <p className="mt-2.5 max-w-[58ch] text-[15.5px] leading-[1.72] text-ink-soft">
+                  <h2 className="text-[21px] font-normal text-ink">{s.title}</h2>
+                  <p className="mt-2.5 max-w-[58ch] text-[16.5px] leading-[1.72] text-ink-soft">
                     {s.body}
                   </p>
                 </div>
@@ -102,7 +102,7 @@ export default function MethodPage() {
 
         <Reveal>
           <section className="mt-20 rounded-[24px] border border-line bg-surface p-7 sm:p-9">
-            <h2 className="text-[19px] font-normal text-ink">What mSport won&apos;t do</h2>
+            <h2 className="text-[21px] font-normal text-ink">What mSport won&apos;t do</h2>
             <ul className="mt-5 space-y-3.5">
               {[
                 "Invent quotes, statistics, dates or events that aren't in your material.",
@@ -113,11 +113,11 @@ export default function MethodPage() {
               ].map((item, i) => (
                 <li key={i} className="flex gap-3.5">
                   <span className="mt-[9px] h-[5px] w-[5px] shrink-0 rounded-full bg-orange/70" />
-                  <span className="text-[15px] leading-[1.65] text-ink-soft">{item}</span>
+                  <span className="text-[16px] leading-[1.65] text-ink-soft">{item}</span>
                 </li>
               ))}
             </ul>
-            <p className="mt-6 max-w-[58ch] text-[14.5px] leading-relaxed text-ink-faint">
+            <p className="mt-6 max-w-[58ch] text-[15px] leading-relaxed text-ink-soft">
               Every Anatomy carries an evidence status — Supported, Partially supported, or Verify —
               describing how well the material you supplied actually carries the analysis.
             </p>
@@ -141,7 +141,7 @@ function ExampleRow({ label, stages }: { label: string; stages: string[] }) {
   return (
     <div className="rounded-[20px] border border-line bg-surface p-5 sm:p-6">
       <p className="eyebrow mb-4">{label}</p>
-      <AnatomyPathPreview stages={stages} />
+      <AnatomyChips stages={stages} />
     </div>
   );
 }

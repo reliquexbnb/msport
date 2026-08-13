@@ -12,17 +12,17 @@ export function SiteHeader() {
 
   return (
     <header className="no-print sticky top-0 z-40 border-b border-line-soft bg-paper/85 backdrop-blur-md">
-      <div className="mx-auto flex h-[62px] w-full max-w-[1240px] items-center justify-between px-5 sm:px-8">
+      <div className="mx-auto flex h-[76px] w-full max-w-[1240px] items-center justify-between px-5 sm:px-8">
         <WordmarkLink />
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-2 md:flex">
           {NAV.map((item) => {
             const active = pathname === item.href;
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`rounded-full px-3.5 py-1.5 text-[14px] transition-colors ${
+                className={`rounded-full px-3.5 py-2 text-[15px] transition-colors ${
                   active ? "text-ink" : "text-ink-soft hover:text-ink"
                 }`}
               >
@@ -32,7 +32,7 @@ export function SiteHeader() {
           })}
           <Link
             href="/analyze"
-            className="ml-2 inline-flex h-9 items-center rounded-full bg-ink px-4 text-[14px] font-medium text-paper transition-all duration-200 hover:bg-[#26251f] hover:shadow-[0_6px_18px_-8px_rgba(53,52,49,0.55)]"
+            className="ml-3 inline-flex h-10 items-center rounded-full bg-ink px-5 text-[14.5px] font-medium text-paper transition-all duration-200 hover:bg-[#26251f] hover:shadow-[0_8px_20px_-8px_rgba(53,52,49,0.6)]"
           >
             Try mSport
           </Link>
@@ -62,7 +62,7 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="border-b border-line-soft py-3 text-[15px] text-ink-soft transition-colors hover:text-ink"
+                className="border-b border-line-soft py-3.5 text-[16px] text-ink-soft transition-colors hover:text-ink"
               >
                 {item.label}
               </Link>

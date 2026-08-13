@@ -11,8 +11,8 @@
   --color-surface: #f8f6f1;
   --color-surface-sunk: #efeae0;
   --color-ink: #353431;
-  --color-ink-soft: #77736d;
-  --color-ink-faint: #9c968e;
+  --color-ink-soft: #605c56;
+  --color-ink-faint: #857f76;
   --color-line: rgba(53, 52, 49, 0.14);
   --color-line-soft: rgba(53, 52, 49, 0.08);
   --color-line-strong: rgba(53, 52, 49, 0.24);
@@ -94,9 +94,9 @@
   }
 
   .eyebrow {
-    font-size: 0.6875rem;
+    font-size: 0.72rem;
     font-weight: 500;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--color-ink-faint);
   }

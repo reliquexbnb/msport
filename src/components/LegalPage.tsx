@@ -25,8 +25,8 @@ export function LegalPage({
 export function LegalSection({ heading, children }: { heading: string; children: ReactNode }) {
   return (
     <section className="border-t border-line pt-7">
-      <h2 className="text-[17px] font-medium text-ink">{heading}</h2>
-      <div className="mt-3 max-w-[60ch] space-y-3 text-[15px] leading-[1.72] text-ink-soft">
+      <h2 className="text-[18.5px] font-medium text-ink">{heading}</h2>
+      <div className="mt-3 max-w-[60ch] space-y-3 text-[16px] leading-[1.75] text-ink-soft">
         {children}
       </div>
     </section>

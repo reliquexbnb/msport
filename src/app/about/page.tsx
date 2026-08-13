@@ -33,8 +33,8 @@ export default function AboutPage() {
 
       <div className="px-5 py-16 sm:px-8 sm:py-20">
         <div className="mx-auto w-full max-w-[880px]">
-          <div className="max-w-[58ch] space-y-6 text-[16.5px] leading-[1.75] text-ink-soft">
-            <p className="text-[19px] leading-[1.65] text-ink">
+          <div className="max-w-[58ch] space-y-6 text-[17px] leading-[1.78] text-ink-soft">
+            <p className="text-[21px] leading-[1.55] text-ink">
               Sports moves fast. Feeds optimize for speed. Scores reduce games to results.
             </p>
             <p>
@@ -65,7 +65,7 @@ export default function AboutPage() {
 
           <div className="mt-14 rounded-[24px] border border-line bg-surface p-7 sm:p-9">
             <p className="eyebrow mb-4">Where this is</p>
-            <p className="max-w-[58ch] text-[15.5px] leading-[1.72] text-ink-soft">
+            <p className="max-w-[58ch] text-[16.5px] leading-[1.72] text-ink-soft">
               mSport is early. It runs without an account, without a subscription, and without
               collecting anything about you. Payments aren&apos;t live yet — the free trial stays
               open while they&apos;re being built. If it&apos;s useful to you, the most valuable
@@ -80,7 +80,7 @@ export default function AboutPage() {
             >
               Analyze something
             </Link>
-            <p className="text-[14.5px] text-ink-soft">{BRAND.positioning}</p>
+            <p className="text-[15.5px] text-ink-soft">{BRAND.positioning}</p>
           </div>
         </div>
       </div>

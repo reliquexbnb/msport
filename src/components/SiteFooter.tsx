@@ -9,7 +9,7 @@ export function SiteFooter() {
         <div className="flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <Wordmark size="lg" />
-            <p className="mt-3 max-w-[30ch] text-[15px] leading-relaxed text-ink-soft">
+            <p className="mt-4 max-w-[30ch] text-[16px] leading-relaxed text-ink-soft">
               {BRAND.tagline}
             </p>
           </div>
@@ -28,7 +28,7 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-line-soft pt-6 text-[13px] text-ink-faint sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-2 border-t border-line-soft pt-6 text-[13.5px] text-ink-faint sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 {BRAND.name}</p>
           <p>{BRAND.domain}</p>
         </div>
@@ -46,7 +46,7 @@ function FooterLink({
   label: string;
   external?: boolean;
 }) {
-  const cls = "text-[14px] text-ink-soft transition-colors hover:text-ink";
+  const cls = "text-[15px] text-ink-soft transition-colors hover:text-ink";
   if (external) {
     return (
       <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>

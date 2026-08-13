@@ -42,3 +42,4 @@ next-env.d.ts
 
 # mSport
 /assets/originals
+/.playwright-mcp

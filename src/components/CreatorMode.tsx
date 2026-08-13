@@ -52,9 +52,9 @@ export function CreatorMode({ result }: { result: AnalysisResult }) {
   const meta = CREATOR_FORMATS.find((f) => f.id === active);
 
   return (
-    <section className="mt-14 border-t border-line pt-10">
-      <h2 className="text-[20px] font-medium text-ink">Turn this Anatomy into…</h2>
-      <p className="mt-1 text-[13.5px] text-ink-faint">
+    <section className="mt-16 border-t border-line pt-11">
+      <h2 className="text-[22px] font-medium text-ink">Turn this Anatomy into…</h2>
+      <p className="mt-1.5 text-[14px] text-ink-faint">
         Each one is built from the Anatomy above. No extra analyses used.
       </p>
 
@@ -73,7 +73,7 @@ export function CreatorMode({ result }: { result: AnalysisResult }) {
             >
               <div className="flex items-center justify-between gap-3">
                 <span
-                  className={`text-[15px] font-medium ${isActive ? "text-orange-deep" : "text-ink"}`}
+                  className={`text-[15.5px] font-medium ${isActive ? "text-orange-deep" : "text-ink"}`}
                 >
                   {f.label}
                 </span>
@@ -108,7 +108,7 @@ export function CreatorMode({ result }: { result: AnalysisResult }) {
                   </svg>
                 )}
               </div>
-              <p className="mt-1.5 text-[13px] leading-relaxed text-ink-soft">{f.description}</p>
+              <p className="mt-1.5 text-[13.5px] leading-relaxed text-ink-soft">{f.description}</p>
             </button>
           );
         })}
@@ -194,7 +194,7 @@ function Block({ label, children }: { label: string; children: React.ReactNode }
 }
 
 function Body({ children }: { children: React.ReactNode }) {
-  return <p className="max-w-[68ch] text-[15px] leading-[1.7] text-ink-soft">{children}</p>;
+  return <p className="max-w-[68ch] text-[15.5px] leading-[1.7] text-ink-soft">{children}</p>;
 }
 
 function Bullets({ items, muted = true }: { items: string[]; muted?: boolean }) {
@@ -203,7 +203,7 @@ function Bullets({ items, muted = true }: { items: string[]; muted?: boolean }) 
       {items.map((i, k) => (
         <li key={k} className="flex gap-3">
           <span className="mt-[9px] h-[4px] w-[4px] shrink-0 rounded-full bg-line-strong" />
-          <span className={`text-[14.5px] leading-[1.65] ${muted ? "text-ink-soft" : "text-ink"}`}>
+          <span className={`text-[15px] leading-[1.65] ${muted ? "text-ink-soft" : "text-ink"}`}>
             {i}
           </span>
         </li>

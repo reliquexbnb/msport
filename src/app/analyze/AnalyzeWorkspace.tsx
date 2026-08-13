@@ -74,7 +74,9 @@ export function AnalyzeWorkspace() {
         sessionStorage.removeItem(PENDING_KEY);
         const d = JSON.parse(pending) as ComposerDraft;
         if (d?.input) {
-          void run(d);
+          // Kick off on the next tick — run() sets state immediately, and
+          // doing that in the effect body cascades a render.
+          queueMicrotask(() => void run(d));
           return;
         }
       }
@@ -83,9 +85,13 @@ export function AnalyzeWorkspace() {
       if (last) {
         const parsed = JSON.parse(last) as { result: AnalysisResult; notice: string | null };
         if (parsed?.result?.anatomy) {
-          setResult(parsed.result);
-          setNotice(parsed.notice);
-          setShowComposer(false);
+          // Restore on the next tick so we don't cascade a render from the
+          // effect body itself.
+          queueMicrotask(() => {
+            setResult(parsed.result);
+            setNotice(parsed.notice);
+            setShowComposer(false);
+          });
         }
       }
     } catch {
@@ -119,10 +125,10 @@ export function AnalyzeWorkspace() {
           {!result && !busy ? (
             <div className="mb-8">
               <p className="eyebrow mb-3">Analyze</p>
-              <h1 className="max-w-[20ch] text-[clamp(1.7rem,3.6vw,2.4rem)] font-normal leading-[1.12] text-ink">
+              <h1 className="max-w-[20ch] text-[clamp(2rem,4.2vw,2.9rem)] font-normal leading-[1.12] text-ink">
                 Put a story on the table.
               </h1>
-              <p className="mt-3 max-w-[52ch] text-[15.5px] leading-relaxed text-ink-soft">
+              <p className="mt-4 max-w-[56ch] text-[17px] leading-[1.7] text-ink-soft">
                 Paste an article, a recap, a transcript or your notes. Drop in a link. Or just ask a
                 question about something you&apos;re trying to understand.
               </p>
@@ -139,13 +145,13 @@ export function AnalyzeWorkspace() {
           ) : null}
 
           {error ? (
-            <p className="animate-fade mt-5 rounded-2xl border border-orange/30 bg-warm-tint px-5 py-4 text-[14.5px] leading-relaxed text-orange-deep">
+            <p className="animate-fade mt-5 rounded-2xl border border-orange/30 bg-warm-tint px-5 py-4 text-[15px] leading-relaxed text-orange-deep">
               {error}
             </p>
           ) : null}
 
           {ready && exhausted && !busy ? (
-            <p className="mt-5 rounded-2xl border border-line bg-surface px-5 py-4 text-[14px] leading-relaxed text-ink-soft">
+            <p className="mt-5 rounded-2xl border border-line bg-surface px-5 py-4 text-[15px] leading-relaxed text-ink-soft">
               You&apos;ve used your five free analyses. Pay-as-you-go packs are being prepared —{" "}
               <a href="/pricing" className="underline underline-offset-2 hover:text-ink">
                 see pricing

@@ -76,8 +76,10 @@ export function Reveal({
     const el = ref.current;
     if (!el) return;
     if (typeof IntersectionObserver === "undefined") {
-      setVisible(true);
-      return;
+      // No observer available — reveal on the next tick rather than during
+      // the effect body, which would cascade a render.
+      const t = setTimeout(() => setVisible(true), 0);
+      return () => clearTimeout(t);
     }
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -231,7 +233,7 @@ export function SectionHeading({
   return (
     <div className={className}>
       {eyebrow ? <Eyebrow className="mb-4">{eyebrow}</Eyebrow> : null}
-      <h2 className="max-w-[24ch] text-[clamp(1.75rem,3.4vw,2.5rem)] font-normal leading-[1.14] text-ink">
+      <h2 className="max-w-[22ch] text-[clamp(2rem,4vw,3rem)] font-normal leading-[1.1] tracking-[-0.026em] text-ink">
         {children}
       </h2>
     </div>

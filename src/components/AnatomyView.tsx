@@ -88,7 +88,7 @@ export function AnatomyView({
           </p>
         ) : null}
 
-        <p className="mt-6 max-w-[62ch] border-l-2 border-orange/45 pl-5 text-[17px] leading-[1.65] text-ink">
+        <p className="mt-6 max-w-[62ch] border-l-2 border-orange/45 pl-5 text-[17.5px] leading-[1.65] text-ink">
           {a.thesis}
         </p>
 
@@ -172,7 +172,7 @@ export function AnatomyView({
 
       {/* ---------------- Quick read ---------------- */}
       <Section title="The 15-Second Read" first>
-        <p className="max-w-[68ch] text-[17px] leading-[1.72] text-ink">{a.quickRead}</p>
+        <p className="max-w-[68ch] text-[17.5px] leading-[1.72] text-ink">{a.quickRead}</p>
       </Section>
 
       {/* ---------------- What happened / why it matters ---------------- */}
@@ -184,7 +184,7 @@ export function AnatomyView({
                 {a.whatHappened.map((item, i) => (
                   <li key={i} className="flex gap-3.5">
                     <span className="mt-[9px] h-[5px] w-[5px] shrink-0 rounded-full bg-orange/70" />
-                    <span className="text-[15.5px] leading-[1.65] text-ink">{item}</span>
+                    <span className="text-[16px] leading-[1.65] text-ink">{item}</span>
                   </li>
                 ))}
               </ol>
@@ -199,7 +199,7 @@ export function AnatomyView({
                       <span className="mt-0.5 shrink-0 font-mono text-[11px] tabular-nums text-ink-faint">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <span className="text-[14.5px] leading-[1.65] text-ink-soft">{item}</span>
+                      <span className="text-[15px] leading-[1.65] text-ink-soft">{item}</span>
                     </li>
                   ))}
                 </ol>
@@ -234,15 +234,15 @@ export function AnatomyView({
                 </div>
                 <div className="min-w-0 pb-1">
                   <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                    <h3 className="text-[17px] font-medium leading-snug text-ink">{t.title}</h3>
+                    <h3 className="text-[17.5px] font-medium leading-snug text-ink">{t.title}</h3>
                     {t.time ? (
                       <span className="rounded-full bg-surface-sunk px-2.5 py-0.5 font-mono text-[11px] tabular-nums text-ink-soft">
                         {t.time}
                       </span>
                     ) : null}
                   </div>
-                  <p className="mt-2.5 text-[15px] leading-[1.68] text-ink-soft">{t.explanation}</p>
-                  <p className="mt-3 border-l-2 border-orange/35 pl-4 text-[14px] leading-[1.62] text-ink">
+                  <p className="mt-2.5 text-[15.5px] leading-[1.68] text-ink-soft">{t.explanation}</p>
+                  <p className="mt-3 border-l-2 border-orange/35 pl-4 text-[14.5px] leading-[1.62] text-ink">
                     <span className="text-ink-faint">Why it mattered — </span>
                     {t.significance}
                   </p>
@@ -262,8 +262,8 @@ export function AnatomyView({
                 <p className="text-[clamp(1.8rem,3.4vw,2.4rem)] font-normal leading-none tracking-[-0.03em] text-orange-deep">
                   {n.value}
                 </p>
-                <p className="mt-3 text-[14.5px] font-medium leading-snug text-ink">{n.label}</p>
-                <p className="mt-2 text-[13.5px] leading-[1.62] text-ink-soft">{n.significance}</p>
+                <p className="mt-3 text-[15px] font-medium leading-snug text-ink">{n.label}</p>
+                <p className="mt-2.5 text-[14px] leading-[1.62] text-ink-soft">{n.significance}</p>
               </div>
             ))}
           </div>
@@ -283,9 +283,9 @@ export function AnatomyView({
                   {initials(p.name)}
                 </span>
                 <div className="min-w-0">
-                  <p className="text-[15.5px] font-medium leading-snug text-ink">{p.name}</p>
+                  <p className="text-[16px] font-medium leading-snug text-ink">{p.name}</p>
                   <p className="mt-0.5 text-[13px] text-ink-faint">{p.role}</p>
-                  <p className="mt-1.5 text-[14px] leading-[1.6] text-ink-soft">{p.relevance}</p>
+                  <p className="mt-1.5 text-[14.5px] leading-[1.6] text-ink-soft">{p.relevance}</p>
                 </div>
               </li>
             ))}
@@ -298,7 +298,7 @@ export function AnatomyView({
         <Section title="The Context" subtitle="What you need to know before interpreting this.">
           <ul className="max-w-[70ch] divide-y divide-line-soft border-y border-line-soft">
             {a.context.map((c, i) => (
-              <li key={i} className="py-4 text-[15px] leading-[1.68] text-ink-soft">
+              <li key={i} className="py-4 text-[15.5px] leading-[1.68] text-ink-soft">
                 {c}
               </li>
             ))}
@@ -319,9 +319,9 @@ export function AnatomyView({
                   <span className="font-mono text-[11px] tabular-nums text-orange">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="text-[16.5px] font-medium leading-snug text-ink">{x.title}</h3>
+                  <h3 className="text-[17.5px] font-medium leading-snug text-ink">{x.title}</h3>
                 </div>
-                <p className="mt-3 pl-[calc(0.75rem+1.6ch)] text-[14.5px] leading-[1.65] text-ink-soft">
+                <p className="mt-3 pl-[calc(0.75rem+1.6ch)] text-[15px] leading-[1.65] text-ink-soft">
                   {x.explanation}
                 </p>
               </li>
@@ -341,7 +341,7 @@ export function AnatomyView({
                   {questions.map((q, i) => (
                     <li key={i} className="flex gap-3.5">
                       <span className="mt-[9px] h-[5px] w-[5px] shrink-0 rounded-full bg-line-strong" />
-                      <span className="text-[15px] leading-[1.65] text-ink">{q}</span>
+                      <span className="text-[16px] leading-[1.65] text-ink">{q}</span>
                     </li>
                   ))}
                 </ul>
@@ -376,7 +376,7 @@ export function AnatomyView({
                         strokeLinejoin="round"
                       />
                     </svg>
-                    <span className="text-[14.5px] leading-[1.62] text-ink">{k}</span>
+                    <span className="text-[15px] leading-[1.62] text-ink">{k}</span>
                   </li>
                 ))}
               </ul>
@@ -393,7 +393,7 @@ export function AnatomyView({
                     >
                       ?
                     </span>
-                    <span className="text-[14.5px] leading-[1.62] text-ink-soft">{u}</span>
+                    <span className="text-[15px] leading-[1.62] text-ink-soft">{u}</span>
                   </li>
                 ))}
               </ul>
@@ -412,7 +412,7 @@ export function AnatomyView({
                 className="flex gap-3.5 rounded-2xl border border-line bg-surface px-5 py-4"
               >
                 <span className="mt-[7px] h-[5px] w-[5px] shrink-0 rounded-full bg-orange" />
-                <span className="text-[14.5px] leading-[1.62] text-ink-soft">{v}</span>
+                <span className="text-[15px] leading-[1.62] text-ink-soft">{v}</span>
               </li>
             ))}
           </ul>
@@ -445,8 +445,8 @@ function Section({
   return (
     <section className={first ? "pt-10" : "border-t border-line-soft pt-10 mt-10"}>
       <div className="mb-6">
-        <h2 className="text-[20px] font-medium leading-snug text-ink">{title}</h2>
-        {subtitle ? <p className="mt-1 text-[13.5px] text-ink-faint">{subtitle}</p> : null}
+        <h2 className="text-[22px] font-medium leading-snug text-ink">{title}</h2>
+        {subtitle ? <p className="mt-1.5 text-[14px] text-ink-faint">{subtitle}</p> : null}
       </div>
       {children}
     </section>

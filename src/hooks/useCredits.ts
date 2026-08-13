@@ -1,22 +1,27 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useSyncExternalStore } from "react";
 import { CREDITS } from "@/lib/config";
 
 /**
  * Anonymous free-trial credits.
  *
- * The MVP tracks these in localStorage. The surface here (read / consume /
- * remaining) is deliberately narrow so it can be swapped for server-side
- * anonymous credits — keyed on a signed cookie — without touching callers.
+ * The MVP tracks these in localStorage, read through useSyncExternalStore so
+ * the server render and the first client render agree and every mounted
+ * component stays in sync. The surface here (remaining / consume / reset) is
+ * deliberately narrow so it can be swapped for server-side anonymous credits —
+ * keyed on a signed cookie — without touching callers.
  */
 
 const EVENT = "msport:credits";
 
 type Stored = { remaining: number; version: 1 };
 
+function clamp(n: number): number {
+  return Math.max(0, Math.min(CREDITS.freeAnalyses, Math.floor(n)));
+}
+
 function read(): number {
-  if (typeof window === "undefined") return CREDITS.freeAnalyses;
   try {
     const raw = window.localStorage.getItem(CREDITS.storageKey);
     if (!raw) return CREDITS.freeAnalyses;
@@ -24,7 +29,7 @@ function read(): number {
     if (typeof parsed?.remaining !== "number" || Number.isNaN(parsed.remaining)) {
       return CREDITS.freeAnalyses;
     }
-    return Math.max(0, Math.min(CREDITS.freeAnalyses, Math.floor(parsed.remaining)));
+    return clamp(parsed.remaining);
   } catch {
     return CREDITS.freeAnalyses;
   }
@@ -39,46 +44,46 @@ function write(remaining: number) {
   } catch {
     /* private mode — credits simply won't persist */
   }
-  window.dispatchEvent(new CustomEvent(EVENT));
+  window.dispatchEvent(new Event(EVENT));
 }
 
+function subscribe(onChange: () => void): () => void {
+  window.addEventListener(EVENT, onChange);
+  window.addEventListener("storage", onChange);
+  return () => {
+    window.removeEventListener(EVENT, onChange);
+    window.removeEventListener("storage", onChange);
+  };
+}
+
+/** Server and first-client snapshot agree, so nothing flashes on hydration. */
+const serverSnapshot = () => CREDITS.freeAnalyses;
+
 export function useCredits() {
-  // Start from the default so server and first client render agree, then
-  // hydrate from storage.
-  const [remaining, setRemaining] = useState<number>(CREDITS.freeAnalyses);
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    setRemaining(read());
-    setReady(true);
-
-    const sync = () => setRemaining(read());
-    window.addEventListener(EVENT, sync);
-    window.addEventListener("storage", sync);
-    return () => {
-      window.removeEventListener(EVENT, sync);
-      window.removeEventListener("storage", sync);
-    };
-  }, []);
+  const remaining = useSyncExternalStore(subscribe, read, serverSnapshot);
+  const mounted = useSyncExternalStore(
+    subscribe,
+    () => true,
+    () => false
+  );
 
   const consume = useCallback(() => {
     const next = Math.max(0, read() - 1);
     write(next);
-    setRemaining(next);
     return next;
   }, []);
 
   const reset = useCallback(() => {
     write(CREDITS.freeAnalyses);
-    setRemaining(CREDITS.freeAnalyses);
   }, []);
 
   return {
     remaining,
-    ready,
+    /** False during SSR and the first paint, so labels don't flicker. */
+    ready: mounted,
     consume,
     reset,
-    exhausted: ready && remaining <= 0,
+    exhausted: mounted && remaining <= 0,
     total: CREDITS.freeAnalyses,
   };
 }
